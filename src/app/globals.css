@@ -9,7 +9,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
@@ -20,6 +20,89 @@ body {
     "Segoe UI Emoji";
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
+}
+
+@media (pointer: fine) {
+  body.has-custom-cursor {
+    cursor: none;
+  }
+
+  body.has-custom-cursor a,
+  body.has-custom-cursor button,
+  body.has-custom-cursor [role="button"],
+  body.has-custom-cursor input,
+  body.has-custom-cursor textarea {
+    cursor: none;
+  }
+}
+
+.custom-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  pointer-events: none;
+  width: 1px;
+  height: 1px;
+  transform: translate3d(var(--cursor-x, -50px), var(--cursor-y, -50px), 0);
+  will-change: transform;
+}
+
+.custom-cursor[data-hidden="true"] {
+  opacity: 0;
+}
+
+.custom-cursor__ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(11, 11, 13, 0.28);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  transform: translate(-50%, -50%) scale(var(--cursor-scale, 1));
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.custom-cursor__dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(11, 11, 13, 0.82);
+  transform: translate(-50%, -50%) scale(var(--cursor-dot-scale, 1));
+  transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.custom-cursor[data-state="default"] {
+  --cursor-scale: 1;
+  --cursor-dot-scale: 1;
+}
+
+.custom-cursor[data-state="link"] {
+  --cursor-scale: 1.35;
+  --cursor-dot-scale: 0.6;
+}
+
+.custom-cursor[data-state="text"] {
+  --cursor-scale: 1.15;
+  --cursor-dot-scale: 1.1;
+}
+
+.custom-cursor[data-state="media"] {
+  --cursor-scale: 1.6;
+  --cursor-dot-scale: 0.4;
+}
+
+.custom-cursor[data-pressed="true"] .custom-cursor__ring {
+  transform: translate(-50%, -50%) scale(calc(var(--cursor-scale, 1) * 0.92));
 }
 
 body::before {

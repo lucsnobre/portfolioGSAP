@@ -2,6 +2,11 @@
 
 import { PillNav } from "@/components/PillNav";
 import { Reveal } from "@/components/Reveal";
+import { InteractiveName } from "@/components/InteractiveName";
+import { TextReveal } from "@/components/TextReveal";
+import { AnimatedUnderline } from "@/components/AnimatedUnderline";
+import { PressableButton } from "@/components/PressableButton";
+import { ScrollIndicator } from "@/components/ScrollIndicator";
 import { work } from "@/lib/work";
 import {
   motion,
@@ -56,6 +61,7 @@ export default function HomePage() {
 
   return (
     <main className="relative">
+      <ScrollIndicator />
       <PillNav />
 
       <section
@@ -79,49 +85,29 @@ export default function HomePage() {
             transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-[68rem]"
           >
-            <div className="text-sm font-medium tracking-tight text-neutral-700">
-              Seja bem-vindo ao meu portfólio pessoal!
-            </div>
+            <TextReveal
+              text="Seja bem-vindo ao meu portfólio pessoal!"
+              as="div"
+              mode="words"
+              delay={0.1}
+              className="text-sm font-medium tracking-tight text-neutral-700"
+            />
 
             <h1 className="mt-6 text-balance text-[clamp(3.6rem,9.2vw,8.6rem)] font-black leading-[0.86] tracking-tight text-ink">
-              Lucas
-              <span className="relative mt-3 block">
-                Nobre
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 540 120"
-                  className="pointer-events-none absolute -left-2 top-[62%] h-12 w-[min(420px,84vw)] -translate-y-1/2 opacity-30"
-                >
-                  <path
-                    d="M16 74 C 98 22, 160 110, 248 66 C 336 20, 392 98, 520 44"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="16"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
+              <InteractiveName />
             </h1>
 
             <p className="mt-8 max-w-xl text-pretty text-sm leading-relaxed tracking-tight text-neutral-700 md:text-base">
-              Front-end dev focado em estética, performance e motion elegante.
-              Interfaces premium, sem ruído.
+              Desenvolvedor Full-Stack focado em entregar soluções inteligentes e apresentar designs surpreendentes.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-3">
-              <a
-                href="#work"
-                className="inline-flex items-center justify-center rounded-full bg-ink px-5 py-3 text-sm font-medium tracking-tight text-white shadow-soft transition-transform duration-200 ease-in-out hover:-translate-y-0.5"
-              >
+              <PressableButton as="a" href="#work" variant="primary">
                 Ver trabalhos
-              </a>
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center rounded-full border border-ink/15 bg-white/40 px-5 py-3 text-sm font-medium tracking-tight text-ink backdrop-blur-sm transition-colors duration-200 ease-in-out hover:bg-white/60"
-              >
+              </PressableButton>
+              <PressableButton as="a" href="#contact" variant="secondary">
                 Contato
-              </a>
+              </PressableButton>
             </div>
           </motion.div>
         </div>
@@ -132,9 +118,12 @@ export default function HomePage() {
           <Reveal>
             <div className="grid gap-10 md:grid-cols-[1fr_2fr]">
               <div>
-                <div className="text-sm font-semibold tracking-tight text-ink">
-                  Work
-                </div>
+                <TextReveal
+                  text="Projetos"
+                  as="div"
+                  mode="letters"
+                  className="text-sm font-semibold tracking-tight text-ink"
+                />
                 <div className="mt-3 max-w-[18rem] text-xs leading-relaxed tracking-wide text-neutral-500">
                   Seleção curta. Direta. Feita pra passar confiança.
                 </div>
@@ -151,7 +140,7 @@ export default function HomePage() {
                       <div className="min-w-0">
                         <div className="flex items-baseline gap-3">
                           <div className="truncate text-lg font-semibold tracking-tight text-ink">
-                            {item.title}
+                            <AnimatedUnderline>{item.title}</AnimatedUnderline>
                           </div>
                           <div className="hidden text-xs font-medium tracking-wide text-neutral-400 md:block">
                             {String(idx + 1).padStart(2, "0")}
@@ -183,9 +172,12 @@ export default function HomePage() {
           <Reveal>
             <div className="grid gap-10 md:grid-cols-[1fr_2fr]">
               <div>
-                <div className="text-sm font-semibold tracking-tight text-ink">
-                  About
-                </div>
+                <TextReveal
+                  text="About"
+                  as="div"
+                  mode="letters"
+                  className="text-sm font-semibold tracking-tight text-ink"
+                />
                 <div className="mt-3 max-w-[18rem] text-xs leading-relaxed tracking-wide text-neutral-500">
                   Editorial UI + brutal minimalism.
                 </div>
@@ -244,12 +236,19 @@ export default function HomePage() {
             <div className="rounded-3xl border border-ink/10 bg-white/40 p-10 shadow-soft backdrop-blur-sm md:p-14">
               <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
                 <div>
-                  <div className="text-sm font-semibold tracking-tight text-ink">
-                    Contact
-                  </div>
-                  <h2 className="mt-5 text-balance text-[clamp(2.1rem,4.4vw,3.6rem)] font-black leading-[0.94] tracking-tight text-ink">
-                    Vamos construir algo que pareça caro.
-                  </h2>
+                  <TextReveal
+                    text="Contact"
+                    as="div"
+                    mode="letters"
+                    className="text-sm font-semibold tracking-tight text-ink"
+                  />
+                  <TextReveal
+                    text="Vamos construir algo que pareça caro."
+                    as="div"
+                    mode="words"
+                    delay={0.05}
+                    className="mt-5 text-balance text-[clamp(2.1rem,4.4vw,3.6rem)] font-black leading-[0.94] tracking-tight text-ink"
+                  />
                   <p className="mt-4 max-w-lg text-pretty text-sm leading-relaxed tracking-tight text-neutral-700 md:text-base">
                     Se você quer um front-end que impressione em 5 segundos,
                     manda uma mensagem. Eu respondo rápido.
@@ -257,28 +256,15 @@ export default function HomePage() {
                 </div>
 
                 <div className="flex flex-col gap-3">
-                  <a
-                    href="mailto:seuemail@exemplo.com"
-                    className="inline-flex items-center justify-center rounded-full bg-ink px-5 py-3 text-sm font-medium tracking-tight text-white transition-transform duration-200 ease-in-out hover:-translate-y-0.5"
-                  >
+                  <PressableButton as="a" href="mailto:seuemail@exemplo.com" variant="primary">
                     Email
-                  </a>
-                  <a
-                    href="https://github.com/SEUUSUARIO"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center justify-center rounded-full border border-ink/15 bg-white/30 px-5 py-3 text-sm font-medium tracking-tight text-ink transition-colors duration-200 ease-in-out hover:bg-white/50"
-                  >
+                  </PressableButton>
+                  <PressableButton as="a" href="https://github.com/SEUUSUARIO" target="_blank" rel="noreferrer" variant="secondary">
                     GitHub
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/SEUUSUARIO"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center justify-center rounded-full border border-ink/15 bg-white/30 px-5 py-3 text-sm font-medium tracking-tight text-ink transition-colors duration-200 ease-in-out hover:bg-white/50"
-                  >
+                  </PressableButton>
+                  <PressableButton as="a" href="https://www.linkedin.com/in/SEUUSUARIO" target="_blank" rel="noreferrer" variant="secondary">
                     LinkedIn
-                  </a>
+                  </PressableButton>
                 </div>
               </div>
             </div>
@@ -293,7 +279,7 @@ export default function HomePage() {
             href="#home"
             className="transition-colors duration-200 ease-in-out hover:text-ink"
           >
-            Topo
+            <AnimatedUnderline>Topo</AnimatedUnderline>
           </a>
         </div>
       </footer>
