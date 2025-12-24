@@ -8,6 +8,10 @@ import { AnimatedUnderline } from "@/components/AnimatedUnderline";
 import { PressableButton } from "@/components/PressableButton";
 import { ScrollIndicator } from "@/components/ScrollIndicator";
 import { work } from "@/lib/work";
+import Image from "next/image";
+import lespeakerLogo from "../../images/lespeaker-logo.webp";
+import gymBuddyLogo from "../../images/GYM_BUDDY_CLARO.png";
+import alpineLogo from "../../images/alpine-logo.png";
 import {
   motion,
   useReducedMotion,
@@ -66,51 +70,43 @@ export default function HomePage() {
 
       <section
         id="home"
-        className="relative flex min-h-[100svh] items-center overflow-hidden px-6 pt-28"
+        className="relative flex min-h-[100svh] overflow-hidden px-6 pb-10 pt-28"
       >
         <div
-          ref={blobRef}
-          className="pointer-events-none absolute left-1/2 top-10 h-[520px] w-[520px] -translate-x-1/2 rounded-full opacity-70 blur-3xl mix-blend-multiply"
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "radial-gradient(circle at 30% 30%, rgba(255, 201, 76, 0.72), rgba(255, 201, 76, 0) 68%)",
+              "radial-gradient(70% 58% at 50% 10%, rgba(255, 206, 74, 0.86) 0%, rgba(255, 206, 74, 0) 60%), radial-gradient(45% 45% at 86% 18%, rgba(255, 250, 230, 0.96) 0%, rgba(255, 250, 230, 0) 62%), linear-gradient(180deg, rgba(255, 248, 214, 0.92) 0%, rgba(255, 255, 252, 0.98) 58%, rgba(255, 255, 255, 1) 100%)",
+          }}
+        />
+        <div
+          ref={blobRef}
+          className="pointer-events-none absolute left-1/2 top-[-180px] h-[880px] w-[880px] -translate-x-1/2 rounded-full opacity-80 blur-3xl mix-blend-multiply"
+          style={{
+            background:
+              "radial-gradient(circle at 50% 50%, rgba(255, 201, 76, 0.78), rgba(255, 201, 76, 0) 66%)",
           }}
         />
 
-        <div className="mx-auto w-full max-w-6xl">
-          <motion.div
-            style={reduce ? undefined : { y: heroY, opacity: heroOpacity }}
-            initial={reduce ? false : { opacity: 0, y: 18 }}
-            animate={reduce ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-[68rem]"
-          >
-            <TextReveal
-              text="Seja bem-vindo ao meu portfólio pessoal!"
-              as="div"
-              mode="words"
-              delay={0.1}
-              className="text-sm font-medium tracking-tight text-neutral-700"
-            />
-
-            <h1 className="mt-6 text-balance text-[clamp(3.6rem,9.2vw,8.6rem)] font-black leading-[0.86] tracking-tight text-ink">
-              <InteractiveName />
-            </h1>
-
-            <p className="mt-8 max-w-xl text-pretty text-sm leading-relaxed tracking-tight text-neutral-700 md:text-base">
-              Desenvolvedor Full-Stack focado em entregar soluções inteligentes e apresentar designs surpreendentes.
-            </p>
-
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              <PressableButton as="a" href="#work" variant="primary">
-                Ver trabalhos
-              </PressableButton>
-              <PressableButton as="a" href="#contact" variant="secondary">
-                Contato
-              </PressableButton>
+        <motion.div
+          style={reduce ? undefined : { y: heroY, opacity: heroOpacity }}
+          initial={reduce ? false : { opacity: 0, y: 18 }}
+          animate={reduce ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+          className="relative mx-auto w-full max-w-none"
+        >
+          <div className="flex min-h-[calc(100svh-7rem)] flex-col justify-end">
+            <div className="mt-10 w-full">
+              <p className="mb-10 max-w-xl text-pretty text-sm font-bold leading-relaxed tracking-tight text-neutral-700 md:mb-6 md:text-base">
+                Desenvolvedor Full-Stack focado em entregar soluções inteligentes e apresentar designs surpreendentes.
+              </p>
+              <h1 className="text-[clamp(3.6rem,14vw,16rem)] font-black leading-[0.8] tracking-tight text-ink whitespace-nowrap">
+                <InteractiveName variant="inline" />
+              </h1>
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </section>
 
       <section id="work" className="px-6 py-24">
@@ -130,37 +126,85 @@ export default function HomePage() {
               </div>
 
               <div className="border-t border-ink/10">
-                {work.map((item, idx) => (
-                  <a
-                    key={item.title}
-                    href={item.href}
-                    className="group block border-b border-ink/10 py-8 transition-colors duration-200 ease-in-out hover:bg-black/[0.02]"
-                  >
-                    <div className="flex items-start justify-between gap-8">
-                      <div className="min-w-0">
-                        <div className="flex items-baseline gap-3">
-                          <div className="truncate text-lg font-semibold tracking-tight text-ink">
-                            <AnimatedUnderline>{item.title}</AnimatedUnderline>
-                          </div>
-                          <div className="hidden text-xs font-medium tracking-wide text-neutral-400 md:block">
-                            {String(idx + 1).padStart(2, "0")}
-                          </div>
-                        </div>
-                        <div className="mt-2 max-w-xl text-sm leading-relaxed tracking-tight text-neutral-700">
-                          {item.meta}
-                        </div>
-                        <div className="mt-3 text-xs tracking-wide text-neutral-500">
-                          {item.stack}
-                        </div>
-                      </div>
+                {work.map((item, idx) => {
+                  const siteExternal = item.href.startsWith("http");
+                  const repoExternal = item.repo?.startsWith("http");
 
-                      <div className="shrink-0 text-xs font-medium tracking-wide text-neutral-500">
-                        {item.year}
+                  const isLespeaker = item.title === "Lespeaker Áudio Part’s";
+                  const isGymBuddy = item.title === "Gym Buddy";
+                  const isAlpineDogs = item.title === "Alpine Dogs";
+
+                  const icon = isLespeaker
+                    ? lespeakerLogo
+                    : isGymBuddy
+                    ? gymBuddyLogo
+                    : isAlpineDogs
+                    ? alpineLogo
+                    : null;
+
+                  const iconAlt = isLespeaker
+                    ? "Logo Lespeaker Áudio Part’s"
+                    : isGymBuddy
+                    ? "Logo Gym Buddy"
+                    : isAlpineDogs
+                    ? "Logo Alpine Dogs"
+                    : "";
+
+                  return (
+                    <div
+                      key={item.title}
+                      className="group border-b border-ink/10 py-8 transition-colors duration-200 ease-in-out hover:bg-black/[0.02]"
+                    >
+                      <div className="flex items-start justify-between gap-8">
+                        <div className="min-w-0">
+                          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                            {icon && (
+                              <div className="flex h-9 w-9 items-center justify-center rounded-md bg-white shadow-sm ring-1 ring-ink/10">
+                                <Image
+                                  src={icon}
+                                  alt={iconAlt}
+                                  className="h-7 w-7 object-contain"
+                                />
+                              </div>
+                            )}
+                            <a
+                              href={item.href}
+                              target={siteExternal ? "_blank" : undefined}
+                              rel={siteExternal ? "noreferrer" : undefined}
+                              className="block min-w-0 truncate text-lg font-semibold tracking-tight text-ink"
+                            >
+                              <AnimatedUnderline>{item.title}</AnimatedUnderline>
+                            </a>
+                            <div className="hidden text-xs font-medium tracking-wide text-neutral-400 md:block">
+                              {String(idx + 1).padStart(2, "0")}
+                            </div>
+                            {item.repo ? (
+                              <a
+                                href={item.repo}
+                                target={repoExternal ? "_blank" : undefined}
+                                rel={repoExternal ? "noreferrer" : undefined}
+                                className="text-xs font-medium tracking-wide text-neutral-500 transition-colors duration-200 ease-in-out hover:text-ink"
+                              >
+                                Repo
+                              </a>
+                            ) : null}
+                          </div>
+                          <div className="mt-2 max-w-xl text-sm leading-relaxed tracking-tight text-neutral-700">
+                            {item.meta}
+                          </div>
+                          <div className="mt-3 text-xs tracking-wide text-neutral-500">
+                            {item.stack}
+                          </div>
+                        </div>
+
+                        <div className="shrink-0 text-xs font-medium tracking-wide text-neutral-500">
+                          {item.year}
+                        </div>
                       </div>
+                      <div className="mt-6 h-px w-full bg-ink/0 transition-colors duration-200 ease-in-out group-hover:bg-ink/10" />
                     </div>
-                    <div className="mt-6 h-px w-full bg-ink/0 transition-colors duration-200 ease-in-out group-hover:bg-ink/10" />
-                  </a>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </Reveal>
@@ -237,13 +281,13 @@ export default function HomePage() {
               <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
                 <div>
                   <TextReveal
-                    text="Contact"
+                    text="Contatos"
                     as="div"
                     mode="letters"
                     className="text-sm font-semibold tracking-tight text-ink"
                   />
                   <TextReveal
-                    text="Vamos construir algo que pareça caro."
+                    text="Conheça mais dos meus projetos"
                     as="div"
                     mode="words"
                     delay={0.05}
@@ -279,7 +323,7 @@ export default function HomePage() {
             href="#home"
             className="transition-colors duration-200 ease-in-out hover:text-ink"
           >
-            <AnimatedUnderline>Topo</AnimatedUnderline>
+            <AnimatedUnderline>Clique aqui para ir ao início</AnimatedUnderline>
           </a>
         </div>
       </footer>

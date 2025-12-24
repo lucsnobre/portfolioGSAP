@@ -33,12 +33,12 @@ const previewB =
 const effects: LetterEffect[] = [
   {
     className:
-      "hover:[font-family:var(--font-marker)] hover:[text-shadow:0_22px_60px_rgba(0,0,0,0.12)]",
+      "hover:[font-family:var(--font-graffiti)] hover:[text-shadow:0_22px_60px_rgba(0,0,0,0.12)]",
     cursor: "text",
     hover: { y: -4, rotate: -2, scale: 1.06 },
   },
   {
-    className: "hover:text-ink",
+    className: "hover:text-ink hover:[font-family:var(--font-super-pixel)]",
     cursor: "media",
     hover: { y: -2, rotate: 2, scale: 1.04 },
     previewSrc: previewA,
@@ -77,7 +77,7 @@ const effects: LetterEffect[] = [
     hover: { y: -6, scale: 1.12, rotate: -1 },
   },
   {
-    className: "hover:text-ink",
+    className: "hover:text-ink hover:[font-family:var(--font-super-pixel)]",
     cursor: "text",
     hover: { y: -3, rotate: 4, scaleX: 0.88, scaleY: 1.06 },
   },
@@ -94,18 +94,20 @@ function NameWord({
   startIndex,
   delay,
   onPreview,
+  display,
 }: {
   text: string;
   startIndex: number;
   delay: number;
   onPreview: (src: string | null) => void;
+  display: "block" | "inline-block";
 }) {
   const reduce = useReducedMotion();
 
   const letters = useMemo(() => Array.from(text), [text]);
 
   if (reduce) {
-    return <span className="block">{text}</span>;
+    return <span className={display}>{text}</span>;
   }
 
   const container = {
@@ -130,7 +132,7 @@ function NameWord({
 
   return (
     <motion.span
-      className="block"
+      className={display}
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.85 }}
@@ -162,7 +164,11 @@ function NameWord({
   );
 }
 
-export function InteractiveName() {
+export function InteractiveName({
+  variant = "stacked",
+}: {
+  variant?: "stacked" | "inline";
+}) {
   const reduce = useReducedMotion();
   const [previewSrc, setPreviewSrc] = useState<string | null>(null);
 
@@ -188,38 +194,55 @@ export function InteractiveName() {
     return <span>Lucas Nobre</span>;
   }
 
+  const isInline = variant === "inline";
+  const display: "block" | "inline-block" = isInline ? "inline-block" : "block";
+
   return (
     <>
       <span aria-label="Lucas Nobre">
         <span className="sr-only">Lucas Nobre</span>
         <span aria-hidden="true">
-          <NameWord
-            text="Lucas"
-            startIndex={0}
-            delay={0.0}
-            onPreview={setPreviewSrc}
-          />
-          <span className="relative mt-3 block">
+          <span
+            className={
+              isInline
+                ? "relative inline-flex flex-nowrap items-baseline gap-x-[0.38em]"
+                : ""
+            }
+          >
             <NameWord
-              text="Nobre"
-              startIndex={5}
-              delay={0.22}
+              text="Lucas"
+              startIndex={0}
+              delay={0.0}
               onPreview={setPreviewSrc}
+              display={display}
             />
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 540 120"
-              className="pointer-events-none absolute -left-2 top-[62%] h-12 w-[min(420px,84vw)] -translate-y-1/2 opacity-30"
-            >
-              <path
-                d="M16 74 C 98 22, 160 110, 248 66 C 336 20, 392 98, 520 44"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="16"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+            <span className={isInline ? "relative inline-block" : "relative mt-3 block"}>
+              <NameWord
+                text="Nobre"
+                startIndex={5}
+                delay={0.22}
+                onPreview={setPreviewSrc}
+                display={display}
               />
-            </svg>
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 540 120"
+                className={
+                  isInline
+                    ? "pointer-events-none absolute -left-2 top-[60%] h-12 w-[min(520px,84vw)] -translate-y-1/2 opacity-30"
+                    : "pointer-events-none absolute -left-2 top-[62%] h-12 w-[min(420px,84vw)] -translate-y-1/2 opacity-30"
+                }
+              >
+                <path
+                  d="M16 74 C 98 22, 160 110, 248 66 C 336 20, 392 98, 520 44"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
           </span>
         </span>
       </span>
