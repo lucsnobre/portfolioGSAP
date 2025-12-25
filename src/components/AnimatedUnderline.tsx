@@ -17,14 +17,22 @@ export function AnimatedUnderline({ children, className = "" }: AnimatedUnderlin
   }
 
   return (
-    <span className={`relative inline-block ${className}`}>
+    <motion.span
+      className={`relative inline-block ${className}`}
+      initial="rest"
+      animate="rest"
+      whileHover="hover"
+    >
       {children}
-      <motion.div
+      <motion.span
+        aria-hidden="true"
         className="absolute bottom-0 left-0 h-px w-full bg-current origin-left"
-        initial={{ scaleX: 0 }}
-        whileHover={{ scaleX: 1 }}
+        variants={{
+          rest: { scaleX: 0 },
+          hover: { scaleX: 1 },
+        }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
       />
-    </span>
+    </motion.span>
   );
 }

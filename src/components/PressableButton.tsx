@@ -18,10 +18,10 @@ export const PressableButton = forwardRef<HTMLAnchorElement | HTMLButtonElement,
   ({ children, variant = "primary", className = "", as: Component = "button", href, target, rel }, ref) => {
     const reduce = useReducedMotion();
 
-    const baseClasses = "inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-medium tracking-tight transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40";
+    const baseClasses = "group inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-medium tracking-tight transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40";
     
     const variantClasses = variant === "primary" 
-      ? "bg-ink text-white shadow-soft hover:-translate-y-0.5"
+      ? "bg-ink text-white shadow-soft hover:bg-ink/90"
       : "border border-ink/15 bg-white/40 text-ink backdrop-blur-sm hover:bg-white/60";
 
     if (reduce) {

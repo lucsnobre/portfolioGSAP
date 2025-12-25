@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 const items = [
   { label: "Início", href: "#home" },
   { label: "Projetos", href: "#work" },
-  { label: "Trajetória", href: "#about" },
+  { label: "Sobre Mim", href: "#about" },
   { label: "Contato", href: "#contact" },
 ];
 
@@ -72,32 +72,6 @@ export function PillNav() {
         animate={navMotion}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       >
-        <a
-          href="#home"
-          className="group relative grid h-9 w-9 place-items-center rounded-full text-neutral-200 transition-colors duration-200 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
-          aria-label="Início"
-        >
-          <span className="absolute inset-0 rounded-full bg-white/0 transition-colors duration-200 group-hover:bg-white/10" />
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 24 24"
-            fill="none"
-            className="relative z-10 h-4 w-4"
-          >
-            <path
-              d="M12 3.5v2.1M12 18.4v2.1M4.2 12H2.1M21.9 12h-2.1M5.4 5.4l1.5 1.5M17.1 17.1l1.5 1.5M18.6 5.4l-1.5 1.5M6.9 17.1l-1.5 1.5"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-            />
-            <path
-              d="M12 16.2a4.2 4.2 0 1 0 0-8.4a4.2 4.2 0 0 0 0 8.4Z"
-              stroke="currentColor"
-              strokeWidth="1.6"
-            />
-          </svg>
-        </a>
-
         {items.map((item) => (
           <a
             key={item.href}
