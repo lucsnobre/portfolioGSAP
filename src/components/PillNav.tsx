@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 const items = [
   { label: "Início", href: "#home" },
   { label: "Projetos", href: "#work" },
+  { label: "Skills", href: "#skills" },
   { label: "Sobre Mim", href: "#about" },
   { label: "Contato", href: "#contact" },
 ];

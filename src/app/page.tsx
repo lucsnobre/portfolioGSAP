@@ -239,6 +239,132 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section id="skills" className="px-6 py-24">
+        <div className="mx-auto w-full max-w-6xl">
+          <Reveal>
+            <div className="grid gap-10 md:grid-cols-[1fr_2fr]">
+              <div>
+                <TextReveal
+                  text="Skills"
+                  as="div"
+                  mode="letters"
+                  delay={0.02}
+                  className="text-sm font-semibold tracking-tight text-ink"
+                />
+                <div className="mt-3 max-w-[18rem] text-xs leading-relaxed tracking-wide text-neutral-500">
+                  Minhas competências técnicas e conhecimentos em desenvolvimento de software.
+                </div>
+              </div>
+
+              <div className="space-y-8">
+                <div className="border-t border-ink/10 pt-6">
+                  <h3 className="text-sm font-semibold tracking-tight text-ink mb-4">Linguagens e Frameworks Front-end</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {["TypeScript", "JavaScript", "React", "Next.js", "TailwindCSS", "HTML5", "CSS3"].map((skill) => (
+                      <span key={skill} className="px-3 py-1 text-xs font-medium tracking-wide text-ink bg-ink/5 rounded-full border border-ink/10">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border-t border-ink/10 pt-6">
+                  <h3 className="text-sm font-semibold tracking-tight text-ink mb-4">Desenvolvimento Backend</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {["Node.js", "Express", "APIs REST", "Cors", "Body-parser"].map((skill) => (
+                      <span key={skill} className="px-3 py-1 text-xs font-medium tracking-wide text-ink bg-ink/5 rounded-full border border-ink/10">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border-t border-ink/10 pt-6">
+                  <h3 className="text-sm font-semibold tracking-tight text-ink mb-4">Cloud Computing</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <h4 className="text-xs font-medium tracking-wide text-neutral-600 mb-2">AWS</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {["EC2", "Lambda", "S3", "SQS", "SNS", "IoT Core", "CloudWatch", "X-Ray", "CloudFormation"].map((skill) => (
+                          <span key={skill} className="px-3 py-1 text-xs font-medium tracking-wide text-ink bg-ink/5 rounded-full border border-ink/10">
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="text-xs font-medium tracking-wide text-neutral-600 mb-2">Azure</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {["Azure Cloud"].map((skill) => (
+                          <span key={skill} className="px-3 py-1 text-xs font-medium tracking-wide text-ink bg-ink/5 rounded-full border border-ink/10">
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="border-t border-ink/10 pt-6">
+                  <h3 className="text-sm font-semibold tracking-tight text-ink mb-4">Testes e Qualidade</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {["Jest", "TS-Jest", "TDD", "Testes Automatizados"].map((skill) => (
+                      <span key={skill} className="px-3 py-1 text-xs font-medium tracking-wide text-ink bg-ink/5 rounded-full border border-ink/10">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border-t border-ink/10 pt-6">
+                  <h3 className="text-sm font-semibold tracking-tight text-ink mb-4">Infraestrutura e DevOps</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {["Docker", "Filas e Tópicos", "Git CI/CD", "Pipelines", "Infraestrutura como Código"].map((skill) => (
+                      <span key={skill} className="px-3 py-1 text-xs font-medium tracking-wide text-ink bg-ink/5 rounded-full border border-ink/10">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border-t border-ink/10 pt-6">
+                  <h3 className="text-sm font-semibold tracking-tight text-ink mb-4">Bancos de Dados</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {["MySQL", "NoSQL", "Bancos Relacionais", "Bancos Não Relacionais"].map((skill) => (
+                      <span key={skill} className="px-3 py-1 text-xs font-medium tracking-wide text-ink bg-ink/5 rounded-full border border-ink/10">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border-t border-ink/10 pt-6">
+                  <h3 className="text-sm font-semibold tracking-tight text-ink mb-4">Observabilidade</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {["AWS X-Ray", "DataDog", "Monitoramento", "Logging Estruturado"].map((skill) => (
+                      <span key={skill} className="px-3 py-1 text-xs font-medium tracking-wide text-ink bg-ink/5 rounded-full border border-ink/10">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border-t border-ink/10 pt-6">
+                  <h3 className="text-sm font-semibold tracking-tight text-ink mb-4">Boas Práticas</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {["Microsserviços", "APIs RESTful", "Clean Code", "Design Patterns", "Arquitetura de Software"].map((skill) => (
+                      <span key={skill} className="px-3 py-1 text-xs font-medium tracking-wide text-ink bg-ink/5 rounded-full border border-ink/10">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <section id="about" className="px-6 py-24">
         <div className="mx-auto w-full max-w-6xl">
           <Reveal>
@@ -377,7 +503,7 @@ export default function HomePage() {
                   </PressableButton>
                   <PressableButton
                     as="a"
-                    href="https://www.linkedin.com/in/lucas-rodrigues-nobre-01941b327/"
+                    href="https://www.linkedin.com/in/lucsnobre"
                     target="_blank"
                     rel="noreferrer"
                     variant="secondary"
