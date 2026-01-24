@@ -12,6 +12,8 @@ import Image from "next/image";
 import lespeakerLogo from "../../images/lespeaker-logo.webp";
 import gymBuddyLogo from "../../images/GYM_BUDDY_CLARO.png";
 import alpineLogo from "../../images/alpine-logo.png";
+import planifyLogo from "../../images/getposh.png";
+import pictoryLogo from "../../images/logo (2).png";
 import {
   motion,
   useReducedMotion,
@@ -130,9 +132,11 @@ export default function HomePage() {
                   const siteExternal = item.href.startsWith("http");
                   const repoExternal = item.repo?.startsWith("http");
 
-                  const isLespeaker = item.title === "Lespeaker Áudio Part’s";
+                  const isLespeaker = item.title === "Lespeaker Áudio Part's";
                   const isGymBuddy = item.title === "Gym Buddy";
                   const isAlpineDogs = item.title === "Alpine Dogs";
+                  const isPlanify = item.title === "Planify";
+                  const isPictory = item.title === "Pictory";
 
                   const icon = isLespeaker
                     ? lespeakerLogo
@@ -140,14 +144,22 @@ export default function HomePage() {
                     ? gymBuddyLogo
                     : isAlpineDogs
                     ? alpineLogo
+                    : isPlanify
+                    ? planifyLogo
+                    : isPictory
+                    ? pictoryLogo
                     : null;
 
                   const iconAlt = isLespeaker
-                    ? "Logo Lespeaker Áudio Part’s"
+                    ? "Logo Lespeaker Áudio Part's"
                     : isGymBuddy
                     ? "Logo Gym Buddy"
                     : isAlpineDogs
                     ? "Logo Alpine Dogs"
+                    : isPlanify
+                    ? "Logo Planify"
+                    : isPictory
+                    ? "Logo Pictory"
                     : "";
 
                   return (

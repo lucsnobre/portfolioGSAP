@@ -31,5 +31,21 @@ export const work: WorkItem[] = [
     year: "2025",
     href: "https://lucsnobre.github.io/alpineJSDOG/",
     repo: "https://github.com/lucsnobre/alpineJSDOG",
+  },
+  {
+    title: "Planify",
+    meta: "Aplicação feita durante as aulas do curso técnico de desenvolvimento de sistemas. O projeto foi realizado com base no tema: Gestão de Projetos como um desafio final para o 1° semestre de 2025.",
+    stack: "HTML · CSS · JavaScript · SQL",
+    year: "2025",
+    href: "https://lucsnobre.github.io/planify2025/",
+    repo: "https://github.com/lucsnobre/planify2025",
+  },
+  {
+    title: "Pictory",
+    meta: "Aplicação feita durante as aulas do curso técnico de desenvolvimento de sistemas. O projeto foi feito para uma atividade da disciplina de gestão de projetos, com objetivo de criar uma rede social que consumisse a API criada pelo professor.",
+    stack: "HTML · CSS · JavaScript",
+    year: "2025",
+    href: "https://lucsnobre.github.io/pictory2024/",
+    repo: "https://github.com/lucsnobre/pictory2024",
   }
 ];
